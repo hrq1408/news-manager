@@ -7,7 +7,7 @@ services:
     # depends_on:
     #   - backend
     volumes:
-      - /home/andyarm/gitapps/news-manager/frontend:/app
+      - ./news-manager/frontend:/app
   # backend:
   #   build: ./backend
   #   ports:
