@@ -1,24 +1,23 @@
-version: '3.3'
-
 name: news-manager
 services:
   frontend:
     build: ./frontend
     ports:
-      - "3000:80"
-    environment:
-      - NEXT_PUBLIC_API_URL=http://localhost:3001
-    depends_on:
-      - backend
-
-  backend:
-    build: ./backend
-    ports:
-      - "3001:3001"
-    environment:
-      - DATABASE_URL=postgresql://postgres:postgres@db:5432/noticias
-    depends_on:
-      - db
+      - "80:80"
+    # depends_on:
+    #   - backend
+    volumes:
+      - /home/andyarm/gitapps/news-manager/frontend:/app
+  # backend:
+  #   build: ./backend
+  #   ports:
+  #     - "3001:3001"
+  #   environment:
+  #     - DATABASE_URL=postgresql://postgres:postgres@db:5432/noticias
+  #   depends_on:
+  #     - db
+  #   volumes:
+  #     - /home/andyarm/gitapps/news-manager/backend:/app
   phpmyadmin:
     image: phpmyadmin
     ports:
@@ -31,14 +30,14 @@ services:
       - db_data:/var/lib/mysql
     restart: always
     environment:
-      - MYSQL_ROOT_PASSWORD=wordpress
-      - MYSQL_DATABASE=wordpress
-      - MYSQL_USER=wordpress
-      - MYSQL_PASSWORD=wordpress
+      - MYSQL_ROOT_PASSWORD=newsmanager
+      - MYSQL_DATABASE=newsmanager
+      - MYSQL_USER=newsmanager
+      - MYSQL_PASSWORD=newsmanager
     expose:
       - 3306
       - 33060
 volumes:
   db_data:
-  - /home/andyarm/gitapps/news-manager/frontend:/app/frontend
-  - /home/andyarm/gitapps/news-manager/backend:/app/backend
+  frontend:
+  backend:
