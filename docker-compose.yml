@@ -4,20 +4,20 @@ services:
     build: ./frontend
     ports:
       - "80:80"
-    # depends_on:
-    #   - backend
+    depends_on:
+      - backend
     volumes:
       - ./news-manager/frontend:/app
-  # backend:
-  #   build: ./backend
-  #   ports:
-  #     - "3001:3001"
-  #   environment:
-  #     - DATABASE_URL=postgresql://postgres:postgres@db:5432/noticias
-  #   depends_on:
-  #     - db
-  #   volumes:
-  #     - /home/andyarm/gitapps/news-manager/backend:/app
+  backend:
+    build: ./backend
+    ports:
+      - "3001:3001"
+    environment:
+      - DATABASE_URL=postgresql://postgres:postgres@db:5432/noticias
+    depends_on:
+      - db
+    volumes:
+      - /home/andyarm/gitapps/news-manager/backend:/app
   phpmyadmin:
     image: phpmyadmin
     ports:
