@@ -7,6 +7,7 @@ interface NoticiaCardProps {
     id: number
     titulo: string,
     editoria: string,
+    subtitulo: string,
     url: string
     imagem: string
     dataHoraPublicacao: string
@@ -28,17 +29,17 @@ export const NoticiaCard: React.FC<NoticiaCardProps> = ({ noticia }) => {
           className="w-full h-[14rem] object-cover"
         />
 
-        <div className="p-4 pt-3 flex flex-col justify-between flex-1">
-          <span className="text-[.75rem] text-blue-700 font-semibold uppercase">
+        <div className="p-4 pt-2 flex flex-col justify-between flex-1">
+          <span className="text-[.70rem] text-blue-700 font-semibold uppercase">
             {noticia.editoria}
           </span>
 
-          <h2 className="text-[1.05rem] font-bold text-[#0d3b66] leading-snug mb-1 line-clamp-2">
+          <h2 className="text-[1.05rem] font-bold text-[#0d3b66] font-serif leading-snug mb-1 line-clamp-3">
             {noticia.titulo}
           </h2>
 
-          <p className="text-[.85rem] text-gray-500 mb-4">
-          {noticia.titulo}
+          <p className="text-[.85rem] text-gray-500 mt-1 mb-4 line-clamp-2 leading-[1.1rem]">
+          {noticia.subtitulo}
           </p>
 
           <hr className='mb-3'/>
