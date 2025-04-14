@@ -1,7 +1,14 @@
 // components/NoticiaLista.tsx
 import React from 'react'
 import { NoticiaCard } from './NoticiaCard'
-import { NoticiaResumo } from '../types/NoticiaResumo'
+
+interface NoticiaResumo {
+  id: number
+  titulo: string
+  url: string
+  imagem: string
+  dataHoraPublicacao: string
+}
 
 interface Props {
   noticias: NoticiaResumo[]
