@@ -13,7 +13,7 @@ services:
     ports:
       - "3001:3001"
     environment:
-      - DATABASE_URL=postgresql://postgres:postgres@db:5432/noticias
+      - DATABASE_URL="mysql://newsmanager:newsmanager@db:3306/newsmanager"
     depends_on:
       - db
     volumes:
@@ -34,6 +34,8 @@ services:
       - MYSQL_DATABASE=newsmanager
       - MYSQL_USER=newsmanager
       - MYSQL_PASSWORD=newsmanager
+    ports:
+      - 3306:3306
     expose:
       - 3306
       - 33060
