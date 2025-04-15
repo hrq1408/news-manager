@@ -1,5 +1,5 @@
 import { PrismaClient } from '@prisma/client'
-import noticias from '../../noticias'
+import noticias from '../../noticias.json'
 const prisma = new PrismaClient()
 
 async function main() {
