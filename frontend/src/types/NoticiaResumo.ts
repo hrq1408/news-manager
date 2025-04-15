@@ -2,7 +2,9 @@
 export interface NoticiaResumo {
     id: number
     titulo: string
+    subtitulo: string
     url: string
     imagem: string
-    dataHoraPublicacao: string // ISO string
+    editoria: string
+    imagem_thumb: string
   }

@@ -1,17 +1,9 @@
 // components/NoticiaCard.tsx
 import React from 'react'
 import { Bookmark, MessageSquare, Share } from 'lucide-react'
-
+import { NoticiaResumo } from '../types/NoticiaResumo'
 interface NoticiaCardProps {
-  noticia: {
-    id: number
-    titulo: string,
-    editoria: string,
-    subtitulo: string,
-    url: string
-    imagem: string
-    dataHoraPublicacao: string
-  }
+  noticia: NoticiaResumo
 }
 
 export const NoticiaCard: React.FC<NoticiaCardProps> = ({ noticia }) => {
@@ -24,7 +16,7 @@ export const NoticiaCard: React.FC<NoticiaCardProps> = ({ noticia }) => {
     >
       <div className="flex flex-col h-full text-left">
         <img
-          src={noticia.imagem}
+          src={noticia.imagem_thumb}
           alt={noticia.titulo}
           className="w-full h-[14rem] object-cover"
         />
