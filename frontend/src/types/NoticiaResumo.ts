@@ -5,5 +5,5 @@ export interface NoticiaResumo {
     subtitulo: string
     url: string
     editoria: string
-    imagem_thumb: string
+    imagem: string
   }
