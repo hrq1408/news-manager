@@ -1,4 +1,3 @@
-// src/noticia/dto/create-noticia.dto.ts
 import { IsString } from 'class-validator'
 
 export class CreateNoticiaDto {

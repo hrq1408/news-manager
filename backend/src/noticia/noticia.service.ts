@@ -1,4 +1,3 @@
-// src/noticia/noticia.service.ts
 import { Injectable } from '@nestjs/common'
 import { PrismaService } from '../prisma/prisma.service'
 import { Noticia } from '@prisma/client'

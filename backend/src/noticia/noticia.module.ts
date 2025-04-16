@@ -1,4 +1,3 @@
-// src/noticia/noticia.module.ts
 import { Module } from '@nestjs/common'
 import { NoticiaService } from './noticia.service'
 import { NoticiaController } from './noticia.controller'
