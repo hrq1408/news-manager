@@ -3,6 +3,8 @@ import { NoticiaCardCompleta } from '../components/NoticiaCardCompleta'
 import { NoticiaDetalhe } from '../types/NoticiaDetalhe'
 import { useParams } from 'react-router-dom'
 import axios from 'axios'
+import { ArrowLeft } from 'lucide-react'
+import { Link } from 'react-router-dom'
 
 export const NoticiaCompleta: React.FC = () => {
    const { id } = useParams()
@@ -26,11 +28,22 @@ export const NoticiaCompleta: React.FC = () => {
    if (!noticia) return <p className="text-center mt-10 text-red-500">Notícia não encontrada.</p>
  
    return (
-     <div className="container-fluid text-center p-6 text-xl text-gray-800">
-       <h1 className="mb-8 mt-5">📰 Estadão - Matéria {id} 📰</h1>
-       <div className="grid gap-6 sm:grid-cols-1 md:grid-cols-1 lg:grid-cols-1">
-         <NoticiaCardCompleta noticia={noticia} />
-       </div>
-     </div>
+      <div className="container-fluid text-center p-6 text-xl text-gray-800">
+      <div className="text-left mb-4">
+        <Link
+          to="/"
+          className="inline-flex items-center text-blue-600 hover:underline hover:text-blue-800"
+        >
+          <ArrowLeft className="mr-2" />
+          Voltar para a lista
+        </Link>
+      </div>
+  
+      <h1 className="mb-8 mt-5">📰 Estadão - Matéria {id} 📰</h1>
+  
+      <div className="grid gap-6 sm:grid-cols-1 md:grid-cols-1 lg:grid-cols-1">
+        <NoticiaCardCompleta noticia={noticia} />
+      </div>
+    </div>
    )
  }
