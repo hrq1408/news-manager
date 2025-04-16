@@ -9,7 +9,7 @@ datasource db {
 }
 
 model Noticia {
-  id                   Int      @id
+  id                   Int      @id @default(autoincrement())
   titulo               String
   subtitulo            String   @db.Text
   url                  String

@@ -1,6 +1,6 @@
 -- CreateTable
 CREATE TABLE `Noticia` (
-    `id` INTEGER NOT NULL,
+    `id` INTEGER NOT NULL AUTO_INCREMENT,
     `titulo` VARCHAR(191) NOT NULL,
     `subtitulo` TEXT NOT NULL,
     `url` VARCHAR(191) NOT NULL,
