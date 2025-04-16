@@ -9,8 +9,10 @@
       "experimentalDecorators": true,
       "emitDecoratorMetadata": true,
       "outDir": "./dist",
+      "rootDir": "./src",
       "baseUrl": "./",
-      "skipLibCheck": true
+      "skipLibCheck": true,
+      "resolveJsonModule": true
     },
     "include": ["src/**/*"]
   }

@@ -19,7 +19,7 @@ async function main() {
       },
     })
   }
-  console.log('Database populed')
+  console.log('Database populated')
 }
 
 main()

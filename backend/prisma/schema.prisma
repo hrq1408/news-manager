@@ -1,5 +1,6 @@
 generator client {
-  provider = "prisma-client-js"
+  provider      = "prisma-client-js"
+  binaryTargets = ["native", "linux-arm64-openssl-3.0.x"]
 }
 
 datasource db {
@@ -8,12 +9,12 @@ datasource db {
 }
 
 model Noticia {
-  id                   Int     @id
+  id                   Int      @id
   titulo               String
-  subtitulo            String  @db.Text
+  subtitulo            String   @db.Text
   url                  String
   imagem               String
   editoria             String
   data_hora_publicacao DateTime
-  conteudo             String  @db.Text
+  conteudo             String   @db.Text
 }
