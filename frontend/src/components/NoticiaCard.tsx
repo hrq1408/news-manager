@@ -19,7 +19,7 @@ export const NoticiaCard: React.FC<NoticiaCardProps> = ({ noticia }) => {
         <img
           src={noticia.imagem}
           alt={noticia.titulo}
-          className="w-full h-[14rem] object-cover"
+          className="w-full h-[14rem] object-cover object-top" 
         />
 
         <div className="p-4 pt-3 flex flex-col justify-between flex-1">
