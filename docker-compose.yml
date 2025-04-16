@@ -1,28 +1,5 @@
 name: news-manager
 services:
-  frontend:
-    build: ./frontend
-    ports:
-      - "80:80"
-    depends_on:
-      - backend
-    volumes:
-      - ./news-manager/frontend:/app
-  backend:
-    build: ./backend
-    ports:
-      - "3001:3001"
-    environment:
-      - DATABASE_URL="mysql://newsmanager:newsmanager@db:3306/newsmanager"
-    depends_on:
-      - db
-    volumes:
-      - /home/andyarm/gitapps/news-manager/backend:/app
-  phpmyadmin:
-    image: phpmyadmin
-    ports:
-      - 8080:80
-    restart: always
   db:
     image: mariadb:10.6.4-focal
     command: '--default-authentication-plugin=mysql_native_password'
@@ -39,7 +16,27 @@ services:
     expose:
       - 3306
       - 33060
+  frontend:
+    build: ./frontend
+    ports:
+      - "80:80"
+    depends_on:
+      - backend
+    volumes:
+      - ./news-manager/frontend:/app
+  phpmyadmin:
+    image: phpmyadmin
+    ports:
+      - 8080:80
+    restart: always
+  backend:
+    build: ./backend
+    ports:
+      - "3001:3001"
+    environment:
+      - DATABASE_URL=mysql://root:newsmanager@db:3306/newsmanager
+    depends_on:
+      - db
 volumes:
   db_data:
   frontend:
-  backend:
