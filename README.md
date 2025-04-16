@@ -14,11 +14,14 @@ Gerenciador completo de notícias com frontend em **React** e backend em **NestJ
 
 ## 🚀 Rodando tudo com Docker
 
-Este comando sobe todos os serviços:
+1. Primeiro você deve clonar esse repo
+1. Este comando sobe todos os serviços
 
 ```bash
 docker-compose up --build
 ```
+
+Você pode rodar com ```-d``` como detached mode e executar os container em segundo plano
 
 Acesse o frontend em: [http://localhost:3000](http://localhost:3000)  
 Acesse a API em: [http://localhost:3001/noticias](http://localhost:3001/noticias)  
