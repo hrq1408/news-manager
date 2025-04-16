@@ -1,4 +1,3 @@
-// components/NoticiaLista.tsx
 import { useState, useEffect } from 'react'
 import { NoticiaCardCompleta } from '../components/NoticiaCardCompleta'
 import { NoticiaDetalhe } from '../types/NoticiaDetalhe'
