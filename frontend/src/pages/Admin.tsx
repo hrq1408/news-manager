@@ -100,7 +100,10 @@ export const Admin: React.FC = () => {
       <div className="grid gap-4 mb-8">
         {Object.entries(form).map(([key, value]) => (
           <div key={key}>
-            <label className="block text-sm font-semibold mb-1">{key.replaceAll('_', ' ')}</label>
+            {
+             
+            }
+            <label className="block text-sm font-semibold mb-1">{key.replaceAll('_', ' ')} { key === 'data_hora_publicacao' ? "<small> Formato: 01/02/2025 13:23</small>": ""}</label>
             {key === 'conteudo' ? (
               <textarea
                 className="w-full border p-2 rounded"
