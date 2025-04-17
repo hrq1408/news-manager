@@ -86,11 +86,14 @@ npm run dev
 
 ---
 
-## ✨ Funcionalidades
+## Tests unitários
 
-- [x] CRUD de notícias via painel admin
-- [x] Integração com banco relacional MySQL
-- [x] Interface amigável com Tailwind CSS
-- [x] Integração total via REST API
-- [x] Navegação com React Router
-- [x] Acesso rápido ao banco pelo phpMyAdmin
+```bash
+cd frontend
+npm run test
+``
+
+```bash
+cd backend
+npm run test
+``
