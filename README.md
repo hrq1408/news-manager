@@ -20,6 +20,11 @@ Gerenciador completo de notícias com frontend em **React** e backend em **NestJ
 ```bash
 docker-compose up --build
 ```
+Para derrubar o Docker e apagar os volumes, se der Docker stop, as migrations pode conflitar na próxima subida, portanto o ideal é derrubar todos os volumes junto:
+
+```bash
+docker-compose down -v
+```
 
 Você pode rodar com ```-d``` como detached mode e executar os container em segundo plano
 
