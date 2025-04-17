@@ -9,7 +9,7 @@
         "build": "npx nest build",
         "format": "prettier --write \"src/**/*.ts\"",
         "lint": "eslint \"src/**/*.ts\" --fix",
-        "seed": "node src/scripts/seed.ts",
+        "seed": "node dist/scripts/seed.js",
         "prisma:migrate": "prisma migrate dev --name init",
         "prisma:generate": "prisma generate"
     },
