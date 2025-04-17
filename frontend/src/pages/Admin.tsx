@@ -133,11 +133,12 @@ export const Admin: React.FC = () => {
       <div className="grid gap-4 mb-8">
         {Object.entries(form).map(([key, value]) => (
           <div key={key}>
-            <label className="block text-sm font-semibold mb-1">{key.replaceAll('_', ' ')} {key === 'data_hora_publicacao' ? "- formato: 2025-04-11 15:22:00" : ""}</label>
+            <label  htmlFor={key.replaceAll('_', ' ')} className="block text-sm font-semibold mb-1">{key.replaceAll('_', ' ')} {key === 'data_hora_publicacao' ? "- formato: 2025-04-11 15:22:00" : ""}</label>
             {key === 'conteudo' ? (
               <textarea
                 className="w-full border p-2 rounded"
-                name={key}
+                id={key.replaceAll('_', ' ')}
+                name={key.replaceAll('_', ' ')}
                 value={value}
                 rows={6}
                 onChange={handleChange}
@@ -148,12 +149,13 @@ export const Admin: React.FC = () => {
                   className="w-full border p-2 rounded"
                   type="text"
                   disabled
-                  name={key}
+                  name={key.replaceAll('_', ' ')}
                   value={value}
-                  onChange={handleChange}
+                  id={key.replaceAll('_', ' ')}
                 />
               ) : (
                 <input
+                  id={key.replaceAll('_', ' ')}
                   className="w-full border p-2 rounded"
                   type="text"
                   name={key}
