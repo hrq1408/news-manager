@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import axios from 'axios'
+import { Link } from 'react-router-dom'
+import { ArrowLeft } from 'lucide-react'
 
 interface Noticia {
   id?: number
@@ -39,6 +41,19 @@ export const Admin: React.FC = () => {
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     setForm({ ...form, [e.target.name]: e.target.value })
+  }
+
+  const handleNoId = async () => {
+    setForm({
+      titulo: '',
+      subtitulo: '',
+      url: '',
+      imagem: '',
+      editoria: '',
+      data_hora_publicacao: '',
+      conteudo: ''
+    })
+    setEditId(null)
   }
 
   const handleSubmit = async () => {
@@ -96,14 +111,11 @@ export const Admin: React.FC = () => {
   return (
     <div className="max-w-4xl mx-auto py-10">
       <h1 className="text-2xl font-bold mb-6">Painel Admin - Gerenciar Notícias</h1>
-
+      {editId ? <Link onClick={handleNoId} to="#"  className="inline-flex items-center text-blue-600 hover:underline hover:text-blue-800"><ArrowLeft className="mr-2" /> Voltar ao Cadastro</Link> : ""}
       <div className="grid gap-4 mb-8">
         {Object.entries(form).map(([key, value]) => (
           <div key={key}>
-            {
-             
-            }
-            <label className="block text-sm font-semibold mb-1">{key.replaceAll('_', ' ')} { key === 'data_hora_publicacao' ? "<small> Formato: 01/02/2025 13:23</small>": ""}</label>
+            <label className="block text-sm font-semibold mb-1">{key.replaceAll('_', ' ')} { key === 'data_hora_publicacao' ? "- formato: 2025-04-11 15:22:00": ""}</label>
             {key === 'conteudo' ? (
               <textarea
                 className="w-full border p-2 rounded"
@@ -113,13 +125,24 @@ export const Admin: React.FC = () => {
                 onChange={handleChange}
               />
             ) : (
+              key === 'id' ? (
               <input
+                className="w-full border p-2 rounded"
+                type="text"
+                disabled
+                name={key}
+                value={value}
+                onChange={handleChange}
+              />
+               ) : (
+                <input
                 className="w-full border p-2 rounded"
                 type="text"
                 name={key}
                 value={value}
                 onChange={handleChange}
               />
+               )
             )}
           </div>
         ))}
