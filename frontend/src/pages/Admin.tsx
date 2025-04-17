@@ -16,6 +16,21 @@ interface Noticia {
 
 const API_BASE = 'http://localhost:3001/noticias'
 
+function formatarDataParaInput(data: string): string {
+  const dt = new Date(data)
+  const ano = dt.getFullYear()
+  const mes = String(dt.getMonth() + 1).padStart(2, '0')
+  const dia = String(dt.getDate()).padStart(2, '0')
+  const hora = String(dt.getHours()).padStart(2, '0')
+  const minuto = String(dt.getMinutes()).padStart(2, '0')
+  const segundo = String(dt.getSeconds()).padStart(2, '0')
+  return `${ano}-${mes}-${dia} ${hora}:${minuto}:${segundo}`
+}
+
+function formatarDataParaEnvio(data: string): string {
+  return new Date(data).toISOString()
+}
+
 export const Admin: React.FC = () => {
   const [noticias, setNoticias] = useState<Noticia[]>([])
   const [form, setForm] = useState<Noticia>({
@@ -62,7 +77,7 @@ export const Admin: React.FC = () => {
 
       const payload = {
         ...form,
-        data_hora_publicacao: new Date(form.data_hora_publicacao).toISOString()
+        data_hora_publicacao: formatarDataParaEnvio(form.data_hora_publicacao)
       }
 
       if (editId !== null) {
@@ -90,7 +105,10 @@ export const Admin: React.FC = () => {
   }
 
   const handleEdit = (noticia: Noticia) => {
-    setForm(noticia)
+    setForm({
+      ...noticia,
+      data_hora_publicacao: formatarDataParaInput(noticia.data_hora_publicacao)
+    })
     setEditId(noticia.id || null)
   }
 
@@ -111,11 +129,11 @@ export const Admin: React.FC = () => {
   return (
     <div className="max-w-4xl mx-auto py-10">
       <h1 className="text-2xl font-bold mb-6">Painel Admin - Gerenciar Notícias</h1>
-      {editId ? <Link onClick={handleNoId} to="#"  className="inline-flex items-center text-blue-600 hover:underline hover:text-blue-800"><ArrowLeft className="mr-2" /> Voltar ao Cadastro</Link> : ""}
+      {editId ? <Link onClick={handleNoId} to="#" className="inline-flex items-center text-blue-600 hover:underline hover:text-blue-800"><ArrowLeft className="mr-2" /> Voltar ao Cadastro</Link> : ""}
       <div className="grid gap-4 mb-8">
         {Object.entries(form).map(([key, value]) => (
           <div key={key}>
-            <label className="block text-sm font-semibold mb-1">{key.replaceAll('_', ' ')} { key === 'data_hora_publicacao' ? "- formato: 2025-04-11 15:22:00": ""}</label>
+            <label className="block text-sm font-semibold mb-1">{key.replaceAll('_', ' ')} {key === 'data_hora_publicacao' ? "- formato: 2025-04-11 15:22:00" : ""}</label>
             {key === 'conteudo' ? (
               <textarea
                 className="w-full border p-2 rounded"
@@ -126,23 +144,23 @@ export const Admin: React.FC = () => {
               />
             ) : (
               key === 'id' ? (
-              <input
-                className="w-full border p-2 rounded"
-                type="text"
-                disabled
-                name={key}
-                value={value}
-                onChange={handleChange}
-              />
-               ) : (
                 <input
-                className="w-full border p-2 rounded"
-                type="text"
-                name={key}
-                value={value}
-                onChange={handleChange}
-              />
-               )
+                  className="w-full border p-2 rounded"
+                  type="text"
+                  disabled
+                  name={key}
+                  value={value}
+                  onChange={handleChange}
+                />
+              ) : (
+                <input
+                  className="w-full border p-2 rounded"
+                  type="text"
+                  name={key}
+                  value={value}
+                  onChange={handleChange}
+                />
+              )
             )}
           </div>
         ))}
