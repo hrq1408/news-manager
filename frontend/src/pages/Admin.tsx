@@ -2,34 +2,8 @@ import React, { useEffect, useState } from 'react'
 import axios from 'axios'
 import { Link } from 'react-router-dom'
 import { ArrowLeft } from 'lucide-react'
-import { ToastContainer, toast } from 'react-toastify';
-
-function App(){
-  const notify = () => toast("Wow so easy!");
-
-  return (
-    <div>
-      <button onClick={notify}>Notify!</button>
-      
-    </div>
-  );
-}
-
-interface Noticia {
-  id?: number
-  titulo: string
-  subtitulo: string
-  url: string
-  imagem: string
-  editoria: string
-  data_hora_publicacao: string
-  conteudo: string
-}
-
-interface Scroll {
-  top?: number,
-  behavior?: string
-}
+import { ToastContainer, toast } from 'react-toastify'
+import { NoticiaDetalhe } from '../types/NoticiaDetalhe'
 
 const API_BASE = 'http://localhost:3001/noticias'
 
@@ -49,8 +23,8 @@ function formatarDataParaEnvio(data: string): string {
 }
 
 export const Admin: React.FC = () => {
-  const [noticias, setNoticias] = useState<Noticia[]>([])
-  const [form, setForm] = useState<Noticia>({
+  const [noticias, setNoticias] = useState<NoticiaDetalhe[]>([])
+  const [form, setForm] = useState<NoticiaDetalhe>({
     titulo: '',
     subtitulo: '',
     url: '',
@@ -130,7 +104,7 @@ export const Admin: React.FC = () => {
       behavior: 'smooth'
     })
   }
-  const handleEdit = (noticia: Noticia) => {
+  const handleEdit = (noticia: NoticiaDetalhe) => {
     setForm({
       ...noticia,
       data_hora_publicacao: formatarDataParaInput(noticia.data_hora_publicacao)
@@ -147,7 +121,7 @@ export const Admin: React.FC = () => {
       toast.success("Gravação realizada com sucesso")
     } catch (err) {
       console.error('Erro ao excluir notícia', err)
-      toast.success("Gravação realizada com sucesso")
+      toast.success("Notícia excluída com sucesso")
     }
   }
 

@@ -1,6 +1,5 @@
-// types/NoticiaDetalhe.ts
 export interface NoticiaDetalhe {
-    id: number
+    id?: number
     titulo: string
     subtitulo: string
     url: string
