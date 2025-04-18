@@ -1,4 +1,4 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common'
+import { Controller, Get, Post, Body, Put, Param, Delete } from '@nestjs/common'
 import { NoticiaService } from './noticia.service'
 import { CreateNoticiaDto } from './dto/create-noticia.dto'
 import { UpdateNoticiaDto } from './dto/update-noticia.dto'
@@ -22,7 +22,7 @@ export class NoticiaController {
     return this.noticiaService.findOne(+id)
   }
 
-  @Patch(':id')
+  @Put(':id')
   update(@Param('id') id: string, @Body() updateNoticiaDto: UpdateNoticiaDto) {
     return this.noticiaService.update(+id, updateNoticiaDto)
   }
