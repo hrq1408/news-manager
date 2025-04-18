@@ -2,6 +2,18 @@ import React, { useEffect, useState } from 'react'
 import axios from 'axios'
 import { Link } from 'react-router-dom'
 import { ArrowLeft } from 'lucide-react'
+import { ToastContainer, toast } from 'react-toastify';
+
+function App(){
+  const notify = () => toast("Wow so easy!");
+
+  return (
+    <div>
+      <button onClick={notify}>Notify!</button>
+      
+    </div>
+  );
+}
 
 interface Noticia {
   id?: number
@@ -12,6 +24,11 @@ interface Noticia {
   editoria: string
   data_hora_publicacao: string
   conteudo: string
+}
+
+interface Scroll {
+  top?: number,
+  behavior?: string
 }
 
 const API_BASE = 'http://localhost:3001/noticias'
@@ -74,6 +91,7 @@ export const Admin: React.FC = () => {
   const handleSubmit = async () => {
     try {
       setLoading(true)
+      
 
       const payload = {
         ...form,
@@ -82,8 +100,10 @@ export const Admin: React.FC = () => {
 
       if (editId !== null) {
         await axios.put(`${API_BASE}/${editId}`, payload)
+        toast.success("Notícia atualizada com sucesso!")
       } else {
         await axios.post(API_BASE, payload)
+        toast.success("Notícia criada com sucesso!")
       }
 
       setForm({
@@ -98,18 +118,25 @@ export const Admin: React.FC = () => {
       setEditId(null)
       await loadNoticias()
     } catch (err) {
-      console.error('Erro ao salvar notícia', err)
+        toast.error("Erro ao cadastrar/atualizar notícia")
     } finally {
       setLoading(false)
     }
   }
 
+  const scrollToUp = () => {
+      window.scrollTo({
+      top: 0,
+      behavior: 'smooth'
+    })
+  }
   const handleEdit = (noticia: Noticia) => {
     setForm({
       ...noticia,
       data_hora_publicacao: formatarDataParaInput(noticia.data_hora_publicacao)
     })
     setEditId(noticia.id || null)
+    scrollToUp()
   }
 
   const handleDelete = async (id?: number) => {
@@ -117,17 +144,21 @@ export const Admin: React.FC = () => {
     try {
       await axios.delete(`${API_BASE}/${id}`)
       loadNoticias()
+      toast.success("Gravação realizada com sucesso")
     } catch (err) {
       console.error('Erro ao excluir notícia', err)
+      toast.success("Gravação realizada com sucesso")
     }
   }
 
   useEffect(() => {
+    toast.info("Notícias carregadas com sucesso")
     loadNoticias()
   }, [])
 
   return (
     <div className="max-w-4xl mx-auto py-10">
+      <ToastContainer />
       <h1 className="text-2xl font-bold mb-6">Painel Admin - Gerenciar Notícias</h1>
       {editId ? <Link onClick={handleNoId} to="#" className="inline-flex items-center text-blue-600 hover:underline hover:text-blue-800"><ArrowLeft className="mr-2" /> Voltar ao Cadastro</Link> : ""}
       <div className="grid gap-4 mb-8">
